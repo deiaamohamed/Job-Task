@@ -1,30 +1,22 @@
 import Header from "./Header";
 import Aboutus from "./Aboutus";
 import Vision from "./Vision";
-import Absraction from "./Abstraction";
 import Services from "./Services";
 import Footer from "./Footer";
 import Service from "./partials/Service";
 import Statistics from "./Statistics";
 import Bfooter from "./Bfooter";
 import Container from "./common/Container";
+import Hero from "./Hero";
 
 function App() {
   return (
-    <>
-      <Container className="relative h-screen">
-        <Header />
-        <section className="absolute top-0 left-0 w-screen h-screen -z-10">
-          <video src="./src/assets/bg-hd2.mp4" autoPlay loop muted></video>
-          <button className="text-white text-2xl font-semibold blur-2xl">
-            Shaping the future of visual Communication
-          </button>
-          <section className="absolute top-0 left-0 w-full h-full bg-black opacity-50"></section>
-        </section>
-      </Container>
+    <div>
+      <Hero />
 
-      <main className="text-white relative">
-        <Container>
+      <main className="text-white relative bg-center bg-no-repeat bg-fixed bg-cover bg-[url('./src/assets/city-lights-abstract-central-building-Large.jpeg')]">
+        <div className="absolute inset-0 bg-black/80 pointer-events-none z-0"></div>
+        <Container className="relative z-10">
           <Aboutus
             Component={function () {
               return (
@@ -168,11 +160,12 @@ function App() {
           />
 
           <Aboutus Component={Statistics} />
-          <Bfooter />
-          <Footer />
         </Container>
+        <Bfooter />
+        <div className="h-20 bg-black/50"></div>
+        <Footer />
       </main>
-    </>
+    </div>
   );
 }
 

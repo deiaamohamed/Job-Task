@@ -1,9 +1,6 @@
-function Container({ children, attributes }) {
-  const className = attributes?.className || "";
+function Container({ children, className }) {
   return (
-    <div className={`container mx-auto h-screen`} {...attributes}>
-      {children}
-    </div>
+    <div className={`container mx-auto ${className || ""}`}>{children}</div>
   );
 }
 
