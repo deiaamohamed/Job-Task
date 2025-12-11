@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react-swc'
 import tailwindcss from '@tailwindcss/vite'
+import { resolve } from 'path'
 
 // https://vite.dev/config/
 export default defineConfig({
@@ -8,4 +9,13 @@ export default defineConfig({
     react(),
     tailwindcss(),
   ],
+  build: {
+    rollupOptions: {
+      input: {
+        main: resolve(__dirname, 'index.html'),
+        contact: resolve(__dirname, 'contact.html'),
+        hero: resolve(__dirname, 'hero.html'),
+      },
+    },
+  },
 })
