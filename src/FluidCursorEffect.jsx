@@ -50,6 +50,9 @@ const defaultProps = {
   backColor: { r: 0.5, g: 0, b: 0 },
   transparent: true,
   className: "",
+  autoCircularMotion: false,
+  motionRadius: 0.3,
+  motionSpeed: 2,
 };
 
 function pointerPrototype() {
@@ -318,6 +321,7 @@ const FluidCursorEffect = (userProps) => {
 
   // Refs for the canvas and for holding mutable, non-reactive GL state
   const canvasRef = useRef(null);
+  const ballRef = useRef(null);
   const glStateRef = useRef({
     gl: null,
     ext: null,
@@ -326,6 +330,9 @@ const FluidCursorEffect = (userProps) => {
       ...defaultProps,
       BACK_COLOR: props.backColor, // Ensure objects are copied
       PAUSED: false,
+      AUTO_CIRCULAR: props.autoCircularMotion,
+      MOTION_RADIUS: props.motionRadius,
+      MOTION_SPEED: props.motionSpeed,
     },
     // Simulation state
     pointers: [pointerPrototype()],
@@ -1264,6 +1271,71 @@ const FluidCursorEffect = (userProps) => {
       const dt = calcDeltaTime();
       if (resizeCanvas()) initFramebuffers();
       updateColors(dt);
+
+      // Auto Circular Motion
+      if (config.AUTO_CIRCULAR) {
+        let autoPointer = pointers.find((p) => p.id === -2); // Reserved ID for auto pointer
+        if (!autoPointer) {
+          autoPointer = pointerPrototype();
+          autoPointer.id = -2;
+          pointers.push(autoPointer);
+        }
+
+        const t = (Date.now() / 1000) * config.MOTION_SPEED;
+        const radius = config.MOTION_RADIUS;
+        const aspectRatio = canvas.width / canvas.height;
+
+        // Circular path: x = cos(t), y = sin(t)
+        // Normalize to 0-1 UV space. Center (0.5, 0.5).
+        // Adjust for aspect ratio to keep it circular visually.
+        // UV coord space: x [0, 1], y [0, 1]
+        // If width > height (aspect > 1), to make a visual circle, x radius should be smaller in UV space than y radius?
+        // Actually:
+        // x_uv = 0.5 + R * cos / aspect
+        // y_uv = 0.5 + R * sin
+
+        let newUvX, newUvY;
+        if (aspectRatio > 1) {
+          newUvX = 0.5 + (radius / aspectRatio) * Math.cos(t);
+          newUvY = 0.5 + radius * Math.sin(t);
+        } else {
+          newUvX = 0.5 + radius * Math.cos(t);
+          newUvY = 0.5 + radius * aspectRatio * Math.sin(t);
+        }
+
+        // Update splatting data
+        autoPointer.prevTexcoordX = autoPointer.texcoordX || newUvX; // handle first frame
+        autoPointer.prevTexcoordY = autoPointer.texcoordY || newUvY;
+        autoPointer.texcoordX = newUvX;
+        autoPointer.texcoordY = newUvY;
+
+        // Compute wrapped delta for splat
+        autoPointer.deltaX = correctDeltaX(newUvX - autoPointer.prevTexcoordX);
+        autoPointer.deltaY = correctDeltaY(newUvY - autoPointer.prevTexcoordY);
+        autoPointer.moved = true; // Force splat
+
+        // Important: manually assign a vibrant color or cycle it
+        // autoPointer.color = ... (already handled by updateColors if tracked there, but let's ensure it)
+
+        // Update Ball Element
+        if (ballRef.current) {
+          // UV to CSS %
+          // Y is usually inverted in WebGL vs CSS.
+          // WebGL: 0 bottom, 1 top. CSS: 0 top, 1 bottom.
+          // Our pointer logic seems to do: pointer.texcoordY = 1 - posY / canvas.height;
+          // So if texcoordY = 1, posY = 0 (top).
+          // So CSS Top % = (1 - uvY) * 100.
+          const cssLeft = newUvX * 100;
+          const cssTop = (1 - newUvY) * 100;
+          ballRef.current.style.left = `${cssLeft}%`;
+          ballRef.current.style.top = `${cssTop}%`;
+        }
+      } else {
+        // Cleanup auto pointer if disabled
+        const idx = pointers.findIndex((p) => p.id === -2);
+        if (idx !== -1) pointers.splice(idx, 1);
+      }
+
       applyInputs();
       step(dt);
       render(null);
@@ -1421,6 +1493,9 @@ const FluidCursorEffect = (userProps) => {
     glStateRef.current.config.SPLAT_RADIUS = props.splatRadius;
     glStateRef.current.config.SPLAT_FORCE = props.splatForce;
     glStateRef.current.config.COLOR_UPDATE_SPEED = props.colorUpdateSpeed;
+    glStateRef.current.config.AUTO_CIRCULAR = props.autoCircularMotion;
+    glStateRef.current.config.MOTION_RADIUS = props.motionRadius;
+    glStateRef.current.config.MOTION_SPEED = props.motionSpeed;
   }, [
     props.densityDissipation,
     props.velocityDissipation,
@@ -1430,18 +1505,34 @@ const FluidCursorEffect = (userProps) => {
     props.splatRadius,
     props.splatForce,
     props.colorUpdateSpeed,
+    props.autoCircularMotion,
+    props.motionRadius,
+    props.motionSpeed,
   ]);
 
   // --- 10. Render JSX ---
   return (
     <div
       className={cn(
-        "pointer-events-none fixed left-0 top-0 z-0 size-full",
+        "pointer-events-none absolute left-0 top-0 z-0 size-full",
         props.className
       )}
       style={{ isolation: "isolate" }} // Ensure the canvas is below the hero content
     >
       <canvas id="fluid" ref={canvasRef} className="block h-screen w-screen" />
+      {props.autoCircularMotion && (
+        <div
+          ref={ballRef}
+          className="absolute w-8 h-8 rounded-full bg-white blur-md shadow-[0_0_20px_10px_rgba(255,255,255,0.4)] opacity-80"
+          style={{
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            willChange: "transform",
+            zIndex: 10,
+          }}
+        />
+      )}
     </div>
   );
 };

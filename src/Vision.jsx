@@ -1,18 +1,12 @@
 import Goal from "./partials/Goal";
+import Heading from "./partials/Heading";
 
 function Vision() {
   return (
-    <div className="w-4/5 mx-auto">
-      <h1
-        className="text-center font-bold text-3xl my-8
-                bg-gradient-to-r from-blue-500 via-green-500 to-pink-500
-                bg-[200%_200%] bg-clip-text text-transparent
-                animate-gradientMove"
-      >
-        WHAT DRIVES US - VISION, MISSION & VALUES
-      </h1>
+    <div className="mx-auto my-16">
+      <Heading title="WHAT DRIVES US - VISION, MISSION & VALUES" />
 
-      <section className="flex gap-10 justify-center">
+      <section className="flex flex-col md:flex-row gap-10 justify-center">
         <Goal
           title={"Our Vision"}
           description={

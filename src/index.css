@@ -1,5 +1,9 @@
 @import "tailwindcss";
 
+html {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
 body {
     background-repeat: no-repeat;
     background-position: center center;
@@ -32,11 +36,15 @@ body {
     }
 
     100% {
+        /* This moves the background 200% to the right */
         background-position: 200% 50%;
     }
 }
 
 /* Animated Gradient Utility Class */
 .animate-gradientMove {
+    /* 1. Set the background size here to make the animation work */
+    background-size: 200% auto;
+    /* 2. Apply the animation */
     animation: gradientMove 4s linear infinite;
 }

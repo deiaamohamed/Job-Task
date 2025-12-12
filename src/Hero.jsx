@@ -16,7 +16,11 @@ export default function Hero() {
 
       {/* Fluid Canvas Effect - Layer 3 */}
       <div className="absolute inset-0 z-20">
-        <FluidCursorEffect />
+        <FluidCursorEffect
+          autoCircularMotion={true}
+          motionRadius={0.3}
+          motionSpeed={2}
+        />
       </div>
 
       {/* Content Layer - Layer 4 (top) */}
