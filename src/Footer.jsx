@@ -1,14 +1,122 @@
-function Footer(){
+import { FaInstagram, FaLinkedin, FaXTwitter } from "react-icons/fa6";
 
-    return(
+const Footer = () => {
+  return (
+    <footer className="bg-black/90 text-white pt-16 pb-8 border-t border-white/10 relative z-20">
+      <div className="container mx-auto px-4">
+        {/* Top Section */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
+          {/* Left Column: Logo & Social */}
+          <div className="space-y-8">
+            <img
+              loading="lazy"
+              src="http://pixontechs.com/wp-content/uploads/2025/07/PIXON-TECH-LOGO.png"
+              alt="Pixon Tech Logo"
+              className="w-[230px] h-auto"
+            />
+            {/* Social Icons */}
+            <div className="flex gap-4">
+              <a
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-blue-500 transition-colors duration-300"
+                aria-label="X (Twitter)"
+              >
+                <FaXTwitter className="text-xl" />
+              </a>
+              <a
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-pink-600 transition-colors duration-300"
+                aria-label="Instagram"
+              >
+                <FaInstagram className="text-xl" />
+              </a>
+              <a
+                href="#"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-blue-700 transition-colors duration-300"
+                aria-label="LinkedIn"
+              >
+                <FaLinkedin className="text-xl" />
+              </a>
+            </div>
+          </div>
 
-        <div>
-
-            <h5>dfdfd</h5>
-            <ul>
-                <li>dfd</li>
+          {/* Right Column: Quick Links */}
+          <div className="md:pl-16">
+            <h4 className="text-lg font-semibold mb-6 border-b border-white/20 pb-2 inline-block">
+              Quick Links
+            </h4>
+            <ul className="space-y-4 text-gray-400">
+              <li>
+                <a
+                  href="http://pixontechs.com/about-us/"
+                  className="hover:text-blue-400 transition-colors"
+                >
+                  About us
+                </a>
+              </li>
+              <li>
+                <a
+                  href="http://pixontechs.com/our-solutions/"
+                  className="hover:text-blue-400 transition-colors"
+                >
+                  Our Solutions
+                </a>
+              </li>
+              <li>
+                <a
+                  href="http://pixontechs.com/company-profile/"
+                  className="hover:text-blue-400 transition-colors"
+                >
+                  Company Profile
+                </a>
+              </li>
+              <li>
+                <a
+                  href="http://pixontechs.com/contact-us/"
+                  className="hover:text-blue-400 transition-colors"
+                >
+                  Contact us
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://www.unilumin.com/UniDesigner/"
+                  className="hover:text-blue-400 transition-colors"
+                >
+                  LED Configurator
+                </a>
+              </li>
             </ul>
+          </div>
         </div>
-    )
-}
-export default Footer
+
+        {/* Bottom Section */}
+        <div className="border-t border-white/10 pt-8 mt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
+          <div className="mb-4 md:mb-0">
+            <span className="text-gray-400">
+              © Copyright 2025. All Rights Reserved - PIXON ART.
+            </span>
+          </div>
+
+          <div className="flex items-center gap-6">
+            <a href="#" className="hover:text-white transition-colors">
+              Privacy Policy
+            </a>
+            <span className="w-px h-4 bg-white/20"></span>
+            <a href="#" className="hover:text-white transition-colors">
+              About Us
+            </a>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;

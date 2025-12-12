@@ -1,19 +1,11 @@
-import Service from "./partials/Service";
+import Heading from "./partials/Heading";
 
-function Services(props){
-    return(
-
-        <div className="mt-28">
-            <div className="">
-                <h1 className="tracking-widest text-center font-medium text-4xl my-8
-                    bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500
-                    bg-[200%_200%] bg-clip-text text-transparent
-                    animate-gradientMove">
-                        {props.head}
-                </h1>
-                {<props.Component></props.Component>}
-            </div>
-        </div>
-    )
+function Services(props) {
+  return (
+    <div className="mt-28">
+      <Heading title={props.head} />
+      <props.Component />
+    </div>
+  );
 }
-export default Services
+export default Services;

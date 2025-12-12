@@ -1,9 +1,50 @@
 @import "tailwindcss";
 
+html {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
 body {
     background-repeat: no-repeat;
     background-position: center center;
     background-attachment: fixed;
     background-size: cover;
     background-image: linear-gradient(90deg, rgba(12, 12, 12, 0.95), rgba(12, 12, 12, 0.95)), url(http://pixontechs.com/wp-content/uploads/2025/05/city-lights-abstract-central-building-Large.jpeg);
+}
+
+
+/* Circular Path Keyframes */
+@keyframes circle-path {
+    0% {
+        transform: translate(-50%, -50%) rotate(0deg) translate(250px) rotate(0deg);
+    }
+
+    100% {
+        transform: translate(-50%, -50%) rotate(360deg) translate(250px) rotate(-360deg);
+    }
+}
+
+/* Optional: Utility for Tailwind if you prefer custom utility classes */
+.animate-circle-path {
+    animation: circle-path 15s linear infinite;
+}
+
+/* Animated Gradient Keyframes - moves gradient from left to right */
+@keyframes gradientMove {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        /* This moves the background 200% to the right */
+        background-position: 200% 50%;
+    }
+}
+
+/* Animated Gradient Utility Class */
+.animate-gradientMove {
+    /* 1. Set the background size here to make the animation work */
+    background-size: 200% auto;
+    /* 2. Apply the animation */
+    animation: gradientMove 4s linear infinite;
 }
