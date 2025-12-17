@@ -15,8 +15,8 @@ function StatisticCard({ number, title }) {
       w-1/2
   "
         >
-                <span class="text-7xl font-bold relative z-50">{number}<i>+</i></span>
-            <span class="block text-lg font-medium mt-8 text-gray-300">{title}</span>
+                <span class="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold relative z-50">{number}<i>+</i></span>
+            <span class="block text-sm md:text-base lg:text-lg font-medium mt-4 md:mt-6 lg:mt-8 text-gray-300">{title}</span>
         </div>
     )
 }

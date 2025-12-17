@@ -1,4 +1,5 @@
 import { FaInstagram, FaLinkedin, FaXTwitter } from "react-icons/fa6";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   return (
@@ -12,7 +13,7 @@ const Footer = () => {
               loading="lazy"
               src="http://pixontechs.com/wp-content/uploads/2025/07/PIXON-TECH-LOGO.png"
               alt="Pixon Tech Logo"
-              className="w-[230px] h-auto"
+              className="w-[180px] md:w-[230px] h-auto"
             />
             {/* Social Icons */}
             <div className="flex gap-4">
@@ -48,46 +49,48 @@ const Footer = () => {
 
           {/* Right Column: Quick Links */}
           <div className="md:pl-16">
-            <h4 className="text-lg font-semibold mb-6 border-b border-white/20 pb-2 inline-block">
+            <h4 className="text-base md:text-lg font-semibold mb-6 border-b border-white/20 pb-2 inline-block">
               Quick Links
             </h4>
-            <ul className="space-y-4 text-gray-400">
+            <ul className="space-y-4 text-gray-400 text-sm md:text-base">
               <li>
-                <a
-                  href="http://pixontechs.com/about-us/"
+                <Link
+                  to="/about-us"
                   className="hover:text-blue-400 transition-colors"
                 >
                   About us
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="http://pixontechs.com/our-solutions/"
+                <Link
+                  to="/solutions"
                   className="hover:text-blue-400 transition-colors"
                 >
                   Our Solutions
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="http://pixontechs.com/company-profile/"
+                <Link
+                  to="/company-profile"
                   className="hover:text-blue-400 transition-colors"
                 >
                   Company Profile
-                </a>
+                </Link>
               </li>
               <li>
-                <a
-                  href="http://pixontechs.com/contact-us/"
+                <Link
+                  to="/contact-us"
                   className="hover:text-blue-400 transition-colors"
                 >
                   Contact us
-                </a>
+                </Link>
               </li>
               <li>
                 <a
                   href="https://www.unilumin.com/UniDesigner/"
                   className="hover:text-blue-400 transition-colors"
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   LED Configurator
                 </a>
@@ -97,9 +100,9 @@ const Footer = () => {
         </div>
 
         {/* Bottom Section */}
-        <div className="border-t border-white/10 pt-8 mt-8 flex flex-col md:flex-row justify-between items-center text-sm text-gray-500">
+        <div className="border-t border-white/10 pt-8 mt-8 flex flex-col md:flex-row justify-between items-center text-xs md:text-sm text-gray-500">
           <div className="mb-4 md:mb-0">
-            <span className="text-gray-400">
+            <span className="text-gray-400 text-center md:text-left">
               © Copyright 2025. All Rights Reserved - PIXON ART.
             </span>
           </div>
