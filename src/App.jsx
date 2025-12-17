@@ -52,7 +52,7 @@ function App() {
             }}
           />
           <Vision />
-          {/* <Absraction/> */}
+          {/* <Absraction /> */}
           <Services
             head="CORPORATE & COMMERCIAL SOLUTIONS"
             Component={function () {
