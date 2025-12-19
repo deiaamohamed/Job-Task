@@ -12,11 +12,10 @@ function StatisticCard({ number, title }) {
       before:top-[-8px]
       before:left-[-25px]
       before:z-0
-      w-1/2
   "
         >
-                <span class="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold relative z-50">{number}<i>+</i></span>
-            <span class="block text-sm md:text-base lg:text-lg font-medium mt-4 md:mt-6 lg:mt-8 text-gray-300">{title}</span>
+                <span className="text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold relative z-50">{number}<i>+</i></span>
+            <span className="block text-sm md:text-base lg:text-lg font-medium mt-4 md:mt-6 lg:mt-8 text-gray-300">{title}</span>
         </div>
     )
 }
