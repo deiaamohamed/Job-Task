@@ -4,7 +4,7 @@ function Service({ image, description }) {
       className="
       relative
         group
-        basis-full md:basis-[calc(50%-0.625rem)] lg:basis-[calc(33.333%-0.667rem)]
+        basis-full md:basis-[calc(33.333%-1.67rem)] lg:basis-[calc(25%-1.88rem)]
         rounded-3xl pb-10 overflow-hidden cursor-pointer
         bg-cover bg-left
         transition-all duration-[6000ms] ease-linear
