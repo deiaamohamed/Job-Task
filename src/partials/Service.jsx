@@ -22,7 +22,7 @@ function Service({ image, description }) {
       ></div>
 
       <div className="px-4">
-        <p className="absolute bottom-0 left-0 right-0 bg-black/70 p-4 uppercase text-white text-md my-4 font-bold">
+        <p className="absolute bottom-0 left-0 right-0 bg-black/40 backdrop-blur-md border-t border-white/10 p-3 md:p-4 uppercase text-white text-xs md:text-sm lg:text-base my-4 font-bold rounded-b-3xl">
           {description}
         </p>
       </div>

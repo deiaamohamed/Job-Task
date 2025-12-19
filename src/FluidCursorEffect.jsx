@@ -53,6 +53,8 @@ const defaultProps = {
   autoCircularMotion: false,
   motionRadius: 0.3,
   motionSpeed: 2,
+  motionCenterX: 0.5,
+  motionCenterY: 0.5,
 };
 
 function pointerPrototype() {
@@ -333,6 +335,8 @@ const FluidCursorEffect = (userProps) => {
       AUTO_CIRCULAR: props.autoCircularMotion,
       MOTION_RADIUS: props.motionRadius,
       MOTION_SPEED: props.motionSpeed,
+      MOTION_CENTER_X: props.motionCenterX,
+      MOTION_CENTER_Y: props.motionCenterY,
     },
     // Simulation state
     pointers: [pointerPrototype()],
@@ -1283,6 +1287,8 @@ const FluidCursorEffect = (userProps) => {
 
         const t = (Date.now() / 1000) * config.MOTION_SPEED;
         const radius = config.MOTION_RADIUS;
+        const centerX = config.MOTION_CENTER_X;
+        const centerY = config.MOTION_CENTER_Y;
         const aspectRatio = canvas.width / canvas.height;
 
         // Circular path: x = cos(t), y = sin(t)
@@ -1296,11 +1302,11 @@ const FluidCursorEffect = (userProps) => {
 
         let newUvX, newUvY;
         if (aspectRatio > 1) {
-          newUvX = 0.5 + (radius / aspectRatio) * Math.cos(t);
-          newUvY = 0.5 + radius * Math.sin(t);
+          newUvX = centerX + (radius / aspectRatio) * Math.cos(t);
+          newUvY = centerY + radius * Math.sin(t);
         } else {
-          newUvX = 0.5 + radius * Math.cos(t);
-          newUvY = 0.5 + radius * aspectRatio * Math.sin(t);
+          newUvX = centerX + radius * Math.cos(t);
+          newUvY = centerY + radius * aspectRatio * Math.sin(t);
         }
 
         // Update splatting data
@@ -1496,6 +1502,8 @@ const FluidCursorEffect = (userProps) => {
     glStateRef.current.config.AUTO_CIRCULAR = props.autoCircularMotion;
     glStateRef.current.config.MOTION_RADIUS = props.motionRadius;
     glStateRef.current.config.MOTION_SPEED = props.motionSpeed;
+    glStateRef.current.config.MOTION_CENTER_X = props.motionCenterX;
+    glStateRef.current.config.MOTION_CENTER_Y = props.motionCenterY;
   }, [
     props.densityDissipation,
     props.velocityDissipation,
@@ -1508,6 +1516,8 @@ const FluidCursorEffect = (userProps) => {
     props.autoCircularMotion,
     props.motionRadius,
     props.motionSpeed,
+    props.motionCenterX,
+    props.motionCenterY,
   ]);
 
   // --- 10. Render JSX ---
@@ -1523,7 +1533,7 @@ const FluidCursorEffect = (userProps) => {
       {props.autoCircularMotion && (
         <div
           ref={ballRef}
-          className="absolute w-8 h-8 rounded-full bg-white blur-md shadow-[0_0_20px_10px_rgba(255,255,255,0.4)] opacity-80"
+          className="absolute w-[10px] h-[10px] rounded-full bg-white blur-[2px] shadow-[0_0_10px_5px_rgba(255,255,255,0.4)] opacity-80"
           style={{
             top: "50%",
             left: "50%",

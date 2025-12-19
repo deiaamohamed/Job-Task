@@ -1,38 +1,70 @@
-import Solution_section from "./app/Solution_section";
+import Aboutus from "./Aboutus";
+import Vision from "./Vision";
+import Services from "./Services";
 import Footer from "./Footer";
 import Service from "./partials/Service";
-import Services from "./Services";
+import Statistics from "./Statistics";
+import Bfooter from "./Bfooter";
 import Container from "./common/Container";
+import Hero from "./Hero";
 import Heading from "./partials/Heading";
 
-function Solutions() {
+function Home() {
   return (
-    <>
-      {/* Hero Section with Image Slider and Header */}
-      <Solution_section />
+    <div>
+      <Hero />
 
-      {/* Main Content */}
       <main className="text-white relative bg-center bg-no-repeat bg-fixed bg-cover bg-[url('./src/assets/city-lights-abstract-central-building-Large.jpeg')]">
         <div className="absolute inset-0 bg-black/80 pointer-events-none z-0"></div>
         <div className="relative z-10">
-          <Container>
-            {/* OUR SOLUTIONS Heading */}
-            <section className="text-center py-8 md:py-12">
-              <h1 className="text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white uppercase tracking-wide">
-                OUR SOLUTIONS
-              </h1>
-            </section>
+          <Aboutus
+            Component={function () {
+              return (
+                <div className="order-2 basis-1/2">
+                  <hr className="mt-4 text-gray-600" />
+                  <div className="p-4 md:p-10">
+                    <h1 className="text-2xl md:text-3xl lg:text-4xl text-gray-300 font-bold uppercase my-3">
+                      about us
+                    </h1>
 
-            {/* EMPOWERING SPACES Section */}
-            <section className="text-center py-4 md:py-8">
+                    <p className="text-base md:text-lg lg:text-xl leading-6 md:leading-7 tracking-wider text-gray-300 text-justify">
+                      <span className="text-blue-500">Pixon Tech</span> is a
+                      Saudi-based audiovisual integrator specializing in
+                      next-generation display, lighting, and interactive
+                      technologies. From iconic LED façades to
+                      collaboration-ready boardrooms, we transform spaces into
+                      dynamic experiences that inform, inspire, and engage. Our
+                      multidisciplinary team blends engineering rigor with
+                      creative flair to deliver turnkey solutions for clients of
+                      every scale.
+                    </p>
+
+                    <div className="text-center md:flex items-center gap-8 md:gap-16">
+                      <button className="bg-blue-500 text-white text-sm md:text-base font-bold py-2 md:py-3 px-6 md:px-8 rounded-full my-7">
+                        Learn more
+                      </button>
+                      <a
+                        className="block text-gray-300 text-sm md:text-base italic"
+                        href="http://pixontechs.com/our-solutions/"
+                      >
+                        - Our Solutions
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              );
+            }}
+          />
+          <Container>
+            <section className="text-center">
               <Heading
                 title="EMPOWERING SPACES WITH INTELLIGENT DESIGN"
-                size="text-2xl md:text-3xl lg:text-4xl"
+                size="p-2 md:p-0 text-3xl"
               />
               <h2 className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-300 -mt-4 md:-mt-6 mb-4 md:mb-6 px-4 md:px-0">
                 Seamless Solutions for a Connected World
               </h2>
-              <p className="p-2 md:p-0 text-base md:text-lg lg:text-xl text-gray-400 mb-6 md:mb-10 px-4 md:px-0 max-w-4xl mx-auto">
+              <p className="p-2 md:p-0 line-clamp-3 md:line-clamp-none text-base md:text-lg lg:text-xl text-gray-400 mb-6 md:mb-10 px-4 md:px-0">
                 <span className="text-white font-bold">Pixon Tech</span>{" "}
                 provides integrated, future-ready technologies that redefine how
                 people interact with spaces. We combine innovation, design, and
@@ -40,14 +72,19 @@ function Solutions() {
                 commercial, educational, and urban environments.
               </p>
             </section>
+            {/* ./Separator Section */}
+            <div className="p-4">
+              <Vision />
+            </div>
 
-            {/* CORPORATE & COMMERCIAL SOLUTIONS */}
+            {/* <Absraction/> */}
+
             <div className="p-4">
               <Services
                 head="CORPORATE & COMMERCIAL SOLUTIONS"
                 Component={function () {
                   return (
-                    <section className="flex gap-6 md:gap-10 justify-center flex-wrap">
+                    <section className="flex justify-center flex-wrap">
                       <Service
                         image={
                           "https://pixontechs.com/wp-content/uploads/2025/06/334567.jpg"
@@ -76,7 +113,7 @@ function Solutions() {
                         image={
                           "https://pixontechs.com/wp-content/uploads/2025/07/7-6-600x281.webp"
                         }
-                        description={"Corporate AV & Collaboration"}
+                        description={"Smart CitiesCorporate AV & Collaboration"}
                       />
                       <Service
                         image={
@@ -84,107 +121,82 @@ function Solutions() {
                         }
                         description={"Control Rooms & Technical Furniture"}
                       />
-                      <Service
-                        image={
-                          "https://pixontechs.com/wp-content/uploads/2025/06/334567.jpg"
-                        }
-                        description={"Specialized Lighting"}
-                      />
-                      <Service
-                        image={
-                          "https://pixontechs.com/wp-content/uploads/2025/09/a1dmin-ajax.php_.jpeg"
-                        }
-                        description={"Education & Training Technology"}
-                      />
-                      <Service
-                        image={
-                          "https://pixontechs.com/wp-content/uploads/2025/07/7-6-600x281.webp"
-                        }
-                        description={"Smart Poles"}
-                      />
                     </section>
                   );
                 }}
               />
-            </div>
-
-            {/* ENTERTAINMENT SOLUTIONS */}
-            <div className="p-4">
               <Services
                 head="ENTERTAINMENT SOLUTIONS"
                 Component={function () {
                   return (
-                    <section className="flex gap-6 md:gap-10 justify-center flex-wrap">
+                    <section className="flex justify-center flex-wrap">
                       <Service
                         image={
                           "https://pixontechs.com/wp-content/uploads/2025/06/334567.jpg"
                         }
-                        description={"Immersive & Experiential Spaces"}
+                        description={"LED & VIDEO WALL SOLUTIONS"}
                       />
-
                       <Service
                         image={
                           "https://pixontechs.com/wp-content/uploads/2025/07/7-6-600x281.webp"
                         }
-                        description={"Home Cinema & Luxury Entertainment"}
+                        description={"Media Façade"}
                       />
-
                       <Service
                         image={
                           "https://pixontechs.com/wp-content/uploads/2025/09/2admin-ajax.php_.jpeg"
                         }
-                        description={"MAPPING PROJECTION"}
+                        description={"DIGITAL SIGNAGE & DOOH"}
                       />
-
                       <Service
                         image={
                           "https://pixontechs.com/wp-content/uploads/2025/09/a2dmin-ajax.php_.jpeg"
                         }
-                        description={"Creative Content Studio"}
+                        description={"Control Rooms & Technical Furniture"}
                       />
                     </section>
                   );
                 }}
               />
-            </div>
-
-            {/* OUT OF THE BOX SOLUTIONS */}
-            <div className="p-4">
               <Services
                 head="OUT OF THE BOX SOLUTIONS"
                 Component={function () {
                   return (
-                    <section className="flex gap-6 md:gap-10 justify-center flex-wrap">
+                    <section className="flex justify-center flex-wrap">
                       <Service
                         image={
                           "https://pixontechs.com/wp-content/uploads/2025/09/ad3min-ajax.php_.webp"
                         }
-                        description={"U NATURAL"}
+                        description={"LED & VIDEO WALL SOLUTIONS"}
                       />
                       <Service
                         image={
                           "https://pixontechs.com/wp-content/uploads/2025/09/a21dmin-ajax.php_.jpeg"
                         }
-                        description={"XR STUDIOS"}
+                        description={"Media Façade"}
                       />
                       <Service
                         image={
                           "https://pixontechs.com/wp-content/uploads/2025/09/a12dmin-ajax.php_.webp"
                         }
-                        description={"Holographic Screens"}
+                        description={"DIGITAL SIGNAGE & DOOH"}
                       />
                     </section>
                   );
                 }}
               />
             </div>
+
+            <Aboutus Component={Statistics} />
           </Container>
         </div>
 
+        <Bfooter />
+        <div className="h-20 bg-black/50"></div>
         <Footer />
       </main>
-    </>
+    </div>
   );
 }
 
-export default Solutions;
+export default Home;

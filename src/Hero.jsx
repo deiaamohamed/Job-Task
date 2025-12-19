@@ -20,6 +20,13 @@ export default function Hero() {
           autoCircularMotion={true}
           motionRadius={0.3}
           motionSpeed={2}
+          motionCenterY={0.4}
+          splatRadius={0.02}
+          densityDissipation={0.2}
+          velocityDissipation={2.0}
+          curl={30}
+          splatForce={3000}
+          pressure={0.05}
         />
       </div>
 
@@ -29,8 +36,8 @@ export default function Hero() {
         <Header />
 
         {/* Hero Button */}
-        <div className="flex-1 flex items-center justify-center">
-          <button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-8 py-4 rounded-full shadow-lg transition-all duration-300 hover:scale-105">
+        <div className="flex-1 flex items-center justify-center px-4">
+          <button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold px-4 md:px-8 py-3 md:py-4 rounded-full shadow-lg transition-all duration-300 hover:scale-105 text-sm md:text-base lg:text-lg">
             Shaping the future of visual Communication
           </button>
         </div>
