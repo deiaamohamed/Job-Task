@@ -131,7 +131,7 @@ function VisionMissionValues() {
     <section className="py-12 md:py-20">
       <Heading title="WHAT DRIVES US - VISION, MISSION & VALUES" />
 
-      <div className="flex flex-col md:flex-row gap-8 lg:gap-10 justify-center mt-10">
+      <div className="flex flex-col md:flex-row gap-10 justify-center mt-10">
         {cards.map((card, index) => (
           <Goal
             key={index}
@@ -204,7 +204,7 @@ function StatisticsWithGallery() {
   ];
 
   return (
-    <section className="py-12 md:py-20 bg-gradient-to-r from-gray-900/50 to-black/50 rounded-2xl my-10">
+    <section className="py-12 md:py-20 bg-linear-to-r from-gray-900/50 to-black/50 rounded-2xl my-10">
       <div className="flex flex-col lg:flex-row gap-10 lg:gap-16 items-center px-6 md:px-10">
         {/* Gallery Column */}
         <div className="lg:w-1/2 w-full">
@@ -213,7 +213,7 @@ function StatisticsWithGallery() {
 
         {/* Statistics Column */}
         <div className="lg:w-1/2 w-full">
-          <div className="grid grid-cols-2 gap-8 md:gap-12">
+          <div className="grid grid-cols-2 gap-16 md:gap-24">
             {statistics.map((stat, index) => (
               <StatisticCard
                 key={index}
@@ -231,7 +231,7 @@ function StatisticsWithGallery() {
 // Subscribe Section (Optional)
 function SubscribeSection() {
   return (
-    <section className="py-12 md:py-16 text-center bg-gradient-to-r from-blue-900/20 to-purple-900/20 rounded-2xl my-10">
+    <section className="py-12 md:py-16 text-center bg-linear-to-r from-blue-900/20 to-purple-900/20 rounded-2xl my-10">
       <h3 className="text-2xl md:text-3xl font-light text-gray-300 italic mb-8">
         Join Our Mailing Group & Get Updates
       </h3>
@@ -295,4 +295,3 @@ function AboutUsPage() {
 }
 
 export default AboutUsPage;
-

@@ -22,7 +22,7 @@ function Header() {
       </div>
 
       {/* Desktop Navigation */}
-      <nav className="hidden lg:flex w-full flex-2">
+      <nav className="hidden lg:flex absolute left-1/2 -translate-x-1/2">
         <ul className="flex justify-center items-center gap-2 md:gap-4">
           <li className="relative">
             <Link
