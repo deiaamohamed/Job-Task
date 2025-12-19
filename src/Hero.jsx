@@ -1,15 +1,23 @@
 import FluidCursorEffect from "./FluidCursorEffect";
 import Header from "./Header";
+import heroVideo from "./assets/con1.mp4";
+import heroPoster from "./assets/hero-banner.png";
 
 export default function Hero() {
   return (
     <section className="relative w-full h-screen overflow-hidden">
       {/* Background Image - Layer 1 (bottom) */}
-      <img
-        src="./src/assets/hero-banner.png"
-        className="absolute inset-0 w-full h-full object-cover z-0"
-        alt="Hero Banner"
-      />
+     <video
+  className="absolute inset-0 w-full h-full object-cover z-0"
+  src={heroVideo}
+  poster={heroPoster}
+  autoPlay
+  muted
+  loop
+  playsInline
+  preload="auto"
+  aria-hidden="true"
+/>
 
       {/* Dark Overlay - Layer 2 */}
       <div className="absolute inset-0 bg-black/40 z-10" />
